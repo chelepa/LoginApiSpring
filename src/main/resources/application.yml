@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Login
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: LoginSpringBoot
+  jwtSecret: javainuse
