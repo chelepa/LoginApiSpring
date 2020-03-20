@@ -12,6 +12,6 @@ import br.com.livelo.login.entities.*;
 @Repository
 public interface UserRepository extends MongoRepository<Users, String>{
 
-	@Query("{ 'username' : ?0 }")
-	List<Users> findByname(String name);
+	@Query("{ 'login' : ?0 }")
+	List<Users> findByLogin(String login);
 }

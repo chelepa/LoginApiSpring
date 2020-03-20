@@ -16,7 +16,7 @@ import lombok.Data;
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 
-	String user;
+	String login;
 
 	String pass;
 
@@ -24,17 +24,17 @@ public class JwtUserDetailsService implements UserDetailsService {
 	private UserServiceImpl userServiceImpl;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		if (getUser() == null && getPass() == null) {
-			for (Users iterable_element : userServiceImpl.findByname(username)) {
-				setUser(iterable_element.getUsername());
+	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+		if (getLogin() == null && getPass() == null) {
+			for (Users iterable_element : userServiceImpl.findByLogin(login)) {
+				setLogin(iterable_element.getLogin());
 				setPass(iterable_element.getPassword());
 			}
 		}
-		if (getUser().equals(username)) {
-			return new User(getUser(), getPass(), new ArrayList<>());
+		if (getLogin().equals(login)) {
+			return new User(getLogin(), getPass(), new ArrayList<>());
 		} else {
-			throw new UsernameNotFoundException("User not found with username: " + username);
+			throw new UsernameNotFoundException("User not found with Login: " + login);
 		}
 	}
 }

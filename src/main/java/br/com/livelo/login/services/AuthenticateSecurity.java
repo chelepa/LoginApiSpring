@@ -24,12 +24,12 @@ public class AuthenticateSecurity {
 
 	public String authenticate(LoginAuthenticateDTO authenticate) throws Exception {
 		
-		String username = authenticate.getUsername();
+		String login = authenticate.getLogin();
 		String password = authenticate.getPassword();
 
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password)).isAuthenticated();
-			return token(username);
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password)).isAuthenticated();
+			return token(login);
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
@@ -37,8 +37,8 @@ public class AuthenticateSecurity {
 		}
 	}
 
-	private String token(String username) throws Exception {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+	private String token(String login) throws Exception {
+		UserDetails userDetails = userDetailsService.loadUserByUsername(login);
 		return jwtTokenUtil.generateToken(userDetails);
 	}
 
