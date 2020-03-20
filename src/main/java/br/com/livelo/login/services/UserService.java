@@ -10,4 +10,5 @@ public interface UserService {
 	
 	Users saveProfile(Users users) throws Exception;
 
+	List<Users> findByCPF(String CPF);
 }

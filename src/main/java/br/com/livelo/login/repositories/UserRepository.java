@@ -14,4 +14,7 @@ public interface UserRepository extends MongoRepository<Users, String>{
 
 	@Query("{ 'login' : ?0 }")
 	List<Users> findByLogin(String login);
+	
+	@Query("{ 'cpf' : ?0 }")
+	List<Users> findByCpf(String CPF);
 }
