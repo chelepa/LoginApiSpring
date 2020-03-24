@@ -8,7 +8,7 @@ public interface UserService {
 
 	List<Users> findByLogin(String login);
 	
-	Users saveProfile(Users users) throws Exception;
+	Users saveProfile(Users users);
 
 	List<Users> findByCPF(String CPF);
 }

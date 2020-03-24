@@ -1,6 +1,7 @@
 package br.com.livelo.login.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,9 +17,8 @@ public class CustomerController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 	
-
 	@PostMapping(value = "/customer/v1/create")
-	public Users createProfile (@RequestBody Users users) throws Exception {
-		return userServiceImpl.saveProfile(users);
+	public ResponseEntity<Users> createProfile (@RequestBody Users users) throws Exception {
+		return ResponseEntity.ok(userServiceImpl.saveProfile(users));
 	}
 }

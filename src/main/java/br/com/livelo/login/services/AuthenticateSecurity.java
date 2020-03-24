@@ -28,7 +28,7 @@ public class AuthenticateSecurity {
 		String password = authenticate.getPassword();
 
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password)).isAuthenticated();
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
 			return token(login);
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);

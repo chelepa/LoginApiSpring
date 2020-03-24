@@ -1,0 +1,32 @@
+{
+  "cpf": "03300121002",
+  "email": "cl.chelepa@gmail.com",
+  "username": "claudimir",
+  "lastname": "chelepa",
+  "password": "Pontos#8759",
+  "login": "03300121000",
+  "endereço": [
+    {
+      "bairro": "bela vista",
+      "cep": "99700252",
+      "cidade": "getulio vargas",
+      "complemento": "salão iris",
+      "estado": "RS",
+      "numero": "279",
+      "pais": "Brasil",
+      "rua": "maranhão"
+    }
+  ],
+  "roles": [
+    {
+      "nome": "ADM"
+    }
+  ],
+  "telefone": [
+    {
+      "codArea": "54",
+      "numero": "991592916",
+      "tipoTelefone": "celular"
+    }
+  ]
+}

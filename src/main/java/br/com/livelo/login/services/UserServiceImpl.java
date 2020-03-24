@@ -27,11 +27,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Users saveProfile(Users users) throws Exception {
-		if (!findByCPF(users.getCpf()).isEmpty()) {
-			throw new LoginRequestException("CPF ja em uso");
+	public Users saveProfile(Users users) {
+		if (findByCPF(users.getCpf()).isEmpty()) {
+			String PasswordEncoder = new BCryptPasswordEncoder().encode(users.getPassword());
+			users.setPassword(PasswordEncoder);
+			return userServiceImpl.insert(users);
 		}
-		users.setPassword(new BCryptPasswordEncoder().encode(users.getPassword()));
-		return userServiceImpl.insert(users);
+		throw new LoginRequestException("CPF ja em uso");
 	}
+	
 }
