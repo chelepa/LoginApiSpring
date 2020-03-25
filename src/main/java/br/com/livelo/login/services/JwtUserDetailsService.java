@@ -10,31 +10,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.livelo.login.entities.Users;
-import lombok.Data;
 
-@Data
+import org.apache.commons.lang3.StringUtils;
+
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
-
-	String login;
-
-	String pass;
 
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		if (getLogin() == null && getPass() == null) {
-			for (Users iterable_element : userServiceImpl.findByLogin(login)) {
-				setLogin(iterable_element.getLogin());
-				setPass(iterable_element.getPassword());
+		if (StringUtils.isNotBlank(login)) {
+			Users User = userServiceImpl.findByLogin(login);
+			if (User != null) {
+				return new User(User.getLogin(), User.getPassword(), new ArrayList<>());
+			}else {
+				throw new UsernameNotFoundException("User not found with Login: " + login);
 			}
-		}
-		if (getLogin().equals(login)) {
-			return new User(getLogin(), getPass(), new ArrayList<>());
-		} else {
-			throw new UsernameNotFoundException("User not found with Login: " + login);
+		}else {
+			throw new UsernameNotFoundException("Login is null: " + login);
 		}
 	}
 }

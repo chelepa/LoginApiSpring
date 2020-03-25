@@ -32,6 +32,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exceptionResponse);
 	}
 	
+	@ExceptionHandler(InvalidCredentialsException.class)
+	public ResponseEntity<Object> invalidCredentialsException(InvalidCredentialsException msg){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCodes.INVALID_CREDENTIALS, msg.getMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
+	}
+	
 	
 
 }

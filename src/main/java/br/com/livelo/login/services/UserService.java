@@ -6,7 +6,7 @@ import br.com.livelo.login.entities.Users;
 
 public interface UserService {
 
-	List<Users> findByLogin(String login);
+	Users findByLogin(String login);
 	
 	Users saveProfile(Users users);
 

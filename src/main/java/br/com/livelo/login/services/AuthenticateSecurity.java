@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import br.com.livelo.login.dto.LoginAuthenticateDTO;
+import br.com.livelo.login.exceptions.InvalidCredentialsException;
 import br.com.livelo.login.jwt.JwtTokenUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class AuthenticateSecurity {
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
-			throw new Exception("INVALID_CREDENTIALS", e);
+			throw new InvalidCredentialsException(e.getMessage());
 		}
 	}
 
