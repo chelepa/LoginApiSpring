@@ -34,7 +34,7 @@ public class AuthenticateSecurity {
 		} catch (DisabledException e) {
 			throw new Exception("USER_DISABLED", e);
 		} catch (BadCredentialsException e) {
-			throw new InvalidCredentialsException(e.getMessage());
+			throw new InvalidCredentialsException("User ou senha Invalidas");
 		}
 	}
 

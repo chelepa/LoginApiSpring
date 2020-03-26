@@ -38,6 +38,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
 	}
 	
+	@ExceptionHandler(LoginNullException.class)
+	public ResponseEntity<Object> loginNotFoundException(LoginNullException msg){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCodes.LOGIN_NULL, msg.getMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
+	}
+	
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<Object> userNotFoundException(UserNotFoundException msg){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCodes.USER_NOT_FOUND, msg.getMessage());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
+	}
+	
 	
 
 }

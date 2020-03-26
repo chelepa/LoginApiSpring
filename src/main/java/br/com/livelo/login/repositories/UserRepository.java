@@ -1,8 +1,5 @@
 package br.com.livelo.login.repositories;
 
-
-import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,5 +13,5 @@ public interface UserRepository extends MongoRepository<Users, String>{
 	Users findByLogin(String login);
 	
 	@Query("{ 'cpf' : ?0 }")
-	List<Users> findByCpf(String CPF);
+	Users findByCpf(String CPF);
 }

@@ -1,7 +1,5 @@
 package br.com.livelo.login.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,13 +20,13 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<Users> findByCPF(String CPF) {
+	public Users findByCPF(String CPF) {
 		return userServiceImpl.findByCpf(CPF);
 	}
 
 	@Override
 	public Users saveProfile(Users users) {
-		if (findByCPF(users.getCpf()).isEmpty()) {
+		if (findByCPF(users.getCpf()) == null) {
 			String PasswordEncoder = new BCryptPasswordEncoder().encode(users.getPassword());
 			users.setPassword(PasswordEncoder);
 			return userServiceImpl.insert(users);

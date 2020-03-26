@@ -13,9 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.exceptions.InvalidCredentialsException;
+import br.com.livelo.login.exceptions.LoginNullException;
+import br.com.livelo.login.exceptions.UserNotFoundException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,39 +35,30 @@ public class JwtUserDetailsServiceTest {
 	@Autowired
 	private JwtUserDetailsService jwtUserDetailsService;
 	
-	private List<Users> user;
-	
-	@Before
-	public void setup() {
-		user = Arrays.asList(listUsers());
-		when(userServiceImpl.findByLogin(toString())).thenReturn(user);
-	}
 
 	@Test
 	public void loadUserByUsernameSucess() {
-		jwtUserDetailsService.setLogin(LOGIN);
-		jwtUserDetailsService.setPass(PASSWORD);
+		when(userServiceImpl.findByLogin(LOGIN)).thenReturn(findByUsers());
 		jwtUserDetailsService.loadUserByUsername(LOGIN);
 	}
 	
-	@Test(expected = Exception.class)
+	@Test(expected = LoginNullException.class)
 	public void loadUserByUsernameError() {
-		jwtUserDetailsService.setLogin("");
+		jwtUserDetailsService.loadUserByUsername(null);
+	}
+	
+	@Test(expected = UserNotFoundException.class)
+	public void loadUserNotFound() {
+		when(userServiceImpl.findByLogin(LOGIN)).thenReturn(null);
 		jwtUserDetailsService.loadUserByUsername(LOGIN);
 	}
 	
-//	@Test
-//	public void setLoginAndPasswordSucess() {
-//		jwtUserDetailsService.setLogin(null);
-//		jwtUserDetailsService.setPass(null);
-//		jwtUserDetailsService.loadUserByUsername(LOGIN);
-//	}
-	
-	private Users listUsers() {
+	private Users findByUsers() {
 		Users users = new Users();
-		users.setPassword("03300121000");
-		users.setLogin("03300121000");
+		users.setLogin(LOGIN);
+		users.setPassword(PASSWORD);
 		return users;
 	}
-
+	
+	
 }

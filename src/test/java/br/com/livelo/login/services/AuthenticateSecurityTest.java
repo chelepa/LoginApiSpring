@@ -1,6 +1,5 @@
 package br.com.livelo.login.services;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.when;
 
 import org.junit.Before;

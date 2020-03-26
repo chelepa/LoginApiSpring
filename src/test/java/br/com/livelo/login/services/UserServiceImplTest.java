@@ -31,8 +31,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void findByLogin_sucess() {
-		List<Users> user = Arrays.asList(listUsers());
-		when(userRepository.findByLogin(toString())).thenReturn(user);
+		when(userRepository.findByLogin(toString())).thenReturn(users());
 		userService.findByLogin(toString());
 	}
 
@@ -44,8 +43,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void findbyCPF_sucess() {
-		List<Users> user = Arrays.asList(listUsers());
-		when(userRepository.findByCpf(toString())).thenReturn(user);
+		when(userRepository.findByCpf(toString())).thenReturn(users());
 		userService.findByCPF(toString());
 	}
 
@@ -57,20 +55,18 @@ public class UserServiceImplTest {
 
 	@Test
 	public void saveProfile_sucess() throws Exception {
-		List<Users> user = Arrays.asList();
-		when(userRepository.findByCpf(toString())).thenReturn(user);
+		when(userRepository.findByCpf(toString())).thenReturn(users());
 		when(userRepository.insert(new Users())).thenReturn(new Users());
-		userService.saveProfile(listUsers());
+		userService.saveProfile(users());
 	}
 	
 	@Test(expected = LoginRequestException.class)
 	public void saveProfile_Error() throws IOException{
-		List<Users> user = Arrays.asList(listUsers());
-		when(userRepository.findByCpf("03300121000")).thenReturn(user);
-		userService.saveProfile(listUsers());
+		when(userRepository.findByCpf("03300121000")).thenReturn(users());
+		userService.saveProfile(users());
 	}
 
-	private Users listUsers() {
+	private Users users() {
 		Users users = new Users();
 		users.setPassword("03300121000");
 		users.setCpf("03300121000");

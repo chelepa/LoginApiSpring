@@ -1,7 +1,5 @@
 package br.com.livelo.login.services;
 
-import java.util.List;
-
 import br.com.livelo.login.entities.Users;
 
 public interface UserService {
@@ -10,5 +8,5 @@ public interface UserService {
 	
 	Users saveProfile(Users users);
 
-	List<Users> findByCPF(String CPF);
+	Users findByCPF(String CPF);
 }

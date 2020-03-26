@@ -1,14 +1,10 @@
 package br.com.livelo.login.controller;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import br.com.livelo.login.dto.JwtResponseDTO;
-import br.com.livelo.login.dto.LoginAuthenticateDTO;
 import br.com.livelo.login.services.AuthenticateSecurity;
 import br.com.livelo.login.util.TestUtil;
 
@@ -33,10 +26,7 @@ import br.com.livelo.login.util.TestUtil;
 @AutoConfigureMockMvc
 public class JwtAuthenticationControllerTest {
 
-	private static final String URL_JwtAuthentication = "/v1/login";
-	private static final String LOGIN = "03300121000";
-	private static final String PASS = "Pontos#8759";
-	
+	private static final String URL_JwtAuthentication = "/v1/login";	
 	private static final String JWT = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMzMwMDEyMTAwMCIsImV4cCI6MTU4NTAwODEzOSwiaWF0IjoxNTg0OTkwMTM5fQ.BpuE-4T_PFqqne83259BXa7dXKsvV0d2EjMnYBwdTcYYQJ59Ko8thyfnNe9Foj1Y0ekTvT9EsaGVn4Y51iRJmw";
 	
 	@Autowired
