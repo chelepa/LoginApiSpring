@@ -50,6 +50,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exceptionResponse);
 	}
 	
+	@ExceptionHandler(UnableJWTException.class)
+	public ResponseEntity<Object> unableJWT(UnableJWTException msg){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCodes.UNABLE_TO_GET_JWT, msg.getMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exceptionResponse);
+	}
 	
-
+	@ExceptionHandler(ExpiredJWTException.class)
+	public ResponseEntity<Object> expiredJWTException(ExpiredJWTException msg){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(ErrorCodes.JWT_EXPIRED, msg.getMessage());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(exceptionResponse);
+	}
 }

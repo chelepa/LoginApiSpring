@@ -21,9 +21,4 @@ public class TestUtil {
 			throw e;
 		}
 	}
-
-	public static String createOrder(String path) throws IOException {
-		File file = new ClassPathResource(path).getFile();
-		return new String(Files.readAllBytes(Paths.get(file.getPath())));
-	}
 }

@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import br.com.livelo.login.exceptions.ExpiredJWTException;
+import br.com.livelo.login.exceptions.UnableJWTException;
 import br.com.livelo.login.services.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -23,6 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtUserDetailsService jwtUserDetailsService;
+	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
@@ -40,9 +43,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
-				System.out.println("Unable to get JWT Token");
-			} catch (ExpiredJwtException e) {
-				System.out.println("JWT Token has expired");
+				throw new UnableJWTException("Unable to get JWT Token");
+			} catch (ExpiredJWTException e) {
+				throw new ExpiredJwtException(null, null, "JWT Token has expired", e);
 			}
 		} else {
 			logger.warn("JWT Token does not begin with Bearer String");
