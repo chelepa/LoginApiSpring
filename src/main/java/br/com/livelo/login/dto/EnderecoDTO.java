@@ -1,9 +1,11 @@
 package br.com.livelo.login.dto;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class EnderecoDTO {
+public class EnderecoDTO implements Serializable {
 
 	private String pais;
 	private String estado;
@@ -13,5 +15,5 @@ public class EnderecoDTO {
 	private String numero;
 	private String complemento;
 	private String cep;
-	
+
 }

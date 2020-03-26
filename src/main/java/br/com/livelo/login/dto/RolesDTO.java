@@ -1,10 +1,14 @@
 package br.com.livelo.login.dto;
 
+import java.io.Serializable;
+
 import lombok.Data;
 
 @Data
-public class RolesDTO {
+public class RolesDTO implements Serializable {
+
+	private static final long serialVersionUID = 6003640633353988900L;
 
 	private String nome;
-	
+
 }

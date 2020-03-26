@@ -22,11 +22,5 @@ public class ExceptionResponse implements Serializable {
         this.message = errorCode.getMessage();
         this.details = Collections.singletonList(details);
     }
-
-    public ExceptionResponse(ErrorCodes errorCode, List<String> details) {
-        this.code = errorCode.name();
-        this.message = errorCode.getMessage();
-        this.details = details;
-    }
 }
 
