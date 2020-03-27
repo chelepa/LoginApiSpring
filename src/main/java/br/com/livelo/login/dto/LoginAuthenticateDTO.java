@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class LoginAuthenticateDTO implements Serializable {
 	
+	private static final long serialVersionUID = -1219195312447025493L;
+	
 	private String login;
 	private String password;
 

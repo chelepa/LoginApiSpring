@@ -1,14 +1,12 @@
-package br.com.livelo.login.dto;
+package br.com.livelo.login.entities;
 
 import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class EnderecoDTO implements Serializable {
+public class EnderecoEntity implements Serializable {
 
-	private static final long serialVersionUID = -2829025292417026057L;
-	
 	private String pais;
 	private String estado;
 	private String cidade;

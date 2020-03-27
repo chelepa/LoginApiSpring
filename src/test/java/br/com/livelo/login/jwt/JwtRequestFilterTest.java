@@ -24,7 +24,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.ExpiredJWTException;
 import br.com.livelo.login.exceptions.UnableJWTException;
 import br.com.livelo.login.services.JwtUserDetailsService;
@@ -108,7 +108,7 @@ public class JwtRequestFilterTest {
 	
 
 	private User userDetail() {
-		Users users = new Users();
+		UsersEntity users = new UsersEntity();
 		users.setLogin(LOGIN);
 		users.setPassword(PASSWORD);
 		return new User(users.getLogin(), users.getPassword(), new ArrayList<>());

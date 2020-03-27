@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import br.com.livelo.login.entities.*;
 
 @Repository
-public interface UserRepository extends MongoRepository<Users, String>{
+public interface UserRepository extends MongoRepository<UsersEntity, String>{
 
 	@Query("{ 'login' : ?0 }")
-	Users findByLogin(String login);
+	UsersEntity findByLogin(String login);
 	
 	@Query("{ 'cpf' : ?0 }")
-	Users findByCpf(String CPF);
+	UsersEntity findByCpf(String CPF);
 }

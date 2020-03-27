@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.InvalidCredentialsException;
 import br.com.livelo.login.exceptions.LoginNullException;
 import br.com.livelo.login.exceptions.UserNotFoundException;
@@ -53,8 +53,8 @@ public class JwtUserDetailsServiceTest {
 		jwtUserDetailsService.loadUserByUsername(LOGIN);
 	}
 	
-	private Users findByUsers() {
-		Users users = new Users();
+	private UsersEntity findByUsers() {
+		UsersEntity users = new UsersEntity();
 		users.setLogin(LOGIN);
 		users.setPassword(PASSWORD);
 		return users;

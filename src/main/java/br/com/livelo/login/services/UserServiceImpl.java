@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.LoginRequestException;
 import br.com.livelo.login.repositories.UserRepository;
 
@@ -15,17 +15,17 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userServiceImpl;
 
 	@Override
-	public Users findByLogin(String login) {
+	public UsersEntity findByLogin(String login) {
 		return userServiceImpl.findByLogin(login);
 	}
 	
 	@Override
-	public Users findByCPF(String CPF) {
+	public UsersEntity findByCPF(String CPF) {
 		return userServiceImpl.findByCpf(CPF);
 	}
 
 	@Override
-	public Users saveProfile(Users users) {
+	public UsersEntity saveProfile(UsersEntity users) {
 		if (findByCPF(users.getCpf()) == null) {
 			String PasswordEncoder = new BCryptPasswordEncoder().encode(users.getPassword());
 			users.setPassword(PasswordEncoder);

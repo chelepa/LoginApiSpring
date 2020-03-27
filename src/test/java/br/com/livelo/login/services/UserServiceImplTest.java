@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.LoginRequestException;
 import br.com.livelo.login.repositories.UserRepository;
 
@@ -56,7 +56,7 @@ public class UserServiceImplTest {
 	@Test
 	public void saveProfile_sucess() throws Exception {
 		when(userRepository.findByCpf(toString())).thenReturn(users());
-		when(userRepository.insert(new Users())).thenReturn(new Users());
+		when(userRepository.insert(new UsersEntity())).thenReturn(new UsersEntity());
 		userService.saveProfile(users());
 	}
 	
@@ -66,8 +66,8 @@ public class UserServiceImplTest {
 		userService.saveProfile(users());
 	}
 
-	private Users users() {
-		Users users = new Users();
+	private UsersEntity users() {
+		UsersEntity users = new UsersEntity();
 		users.setPassword("03300121000");
 		users.setCpf("03300121000");
 		return users;

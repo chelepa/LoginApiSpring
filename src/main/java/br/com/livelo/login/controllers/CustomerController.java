@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.services.UserServiceImpl;
 
 @RestController
@@ -18,7 +18,7 @@ public class CustomerController {
 	private UserServiceImpl userServiceImpl;
 	
 	@PostMapping(value = "/customer/v1/create")
-	public ResponseEntity<Users> createProfile (@RequestBody Users users) throws Exception {
+	public ResponseEntity<UsersEntity> createProfile (@RequestBody UsersEntity users) throws Exception {
 		return ResponseEntity.ok(userServiceImpl.saveProfile(users));
 	}
 }

@@ -1,12 +1,12 @@
 package br.com.livelo.login.services;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 
 public interface UserService {
 
-	Users findByLogin(String login);
+	UsersEntity findByLogin(String login);
 	
-	Users saveProfile(Users users);
+	UsersEntity saveProfile(UsersEntity users);
 
-	Users findByCPF(String CPF);
+	UsersEntity findByCPF(String CPF);
 }

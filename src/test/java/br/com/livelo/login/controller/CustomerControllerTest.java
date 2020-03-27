@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import br.com.livelo.login.entities.Users;
+import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.services.UserServiceImpl;
 import br.com.livelo.login.util.TestUtil;
 
@@ -53,7 +53,7 @@ public class CustomerControllerTest {
 		String URI = URL_CUSTOMER;
 		String jsonFile = TestUtil.readJsonFile("json/UsersCreate.json");
 		
-		when(userServiceImpl.saveProfile(new Users())).thenReturn(new Users());
+		when(userServiceImpl.saveProfile(new UsersEntity())).thenReturn(new UsersEntity());
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				.post(URI)
