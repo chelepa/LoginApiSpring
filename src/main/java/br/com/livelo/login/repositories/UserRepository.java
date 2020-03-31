@@ -11,7 +11,4 @@ public interface UserRepository extends MongoRepository<UsersEntity, String>{
 
 	@Query("{ 'login' : ?0 }")
 	UsersEntity findByLogin(String login);
-	
-	@Query("{ 'cpf' : ?0 }")
-	UsersEntity findByCpf(String CPF);
 }

@@ -7,3 +7,5 @@ spring:
       port: 27017
       database: LoginSpringBoot
   jwtSecret: javainuse
+server:
+  port: 8082

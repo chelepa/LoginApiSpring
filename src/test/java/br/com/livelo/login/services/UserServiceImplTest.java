@@ -41,31 +41,6 @@ public class UserServiceImplTest {
 		userService.findByLogin(toString());
 	}
 
-	@Test
-	public void findbyCPF_sucess() {
-		when(userRepository.findByCpf(toString())).thenReturn(users());
-		userService.findByCPF(toString());
-	}
-
-	@Test
-	public void findbyCPF_Error() {
-		when(userRepository.findByCpf(toString())).thenReturn(null);
-		userService.findByCPF(toString());
-	}
-
-	@Test
-	public void saveProfile_sucess() throws Exception {
-		when(userRepository.findByCpf(toString())).thenReturn(users());
-		when(userRepository.insert(new UsersEntity())).thenReturn(new UsersEntity());
-		userService.saveProfile(users());
-	}
-	
-	@Test(expected = LoginRequestException.class)
-	public void saveProfile_Error() throws IOException{
-		when(userRepository.findByCpf("03300121000")).thenReturn(users());
-		userService.saveProfile(users());
-	}
-
 	private UsersEntity users() {
 		UsersEntity users = new UsersEntity();
 		users.setPassword("03300121000");
