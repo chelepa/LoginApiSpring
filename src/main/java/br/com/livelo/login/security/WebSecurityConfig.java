@@ -58,8 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers(
-					"/v1/login",
-					"/customer/v1/create",
+			    "/v1/login",
+			    "/customer/v1/create",
 		            "/swagger-resources",
 		            "/swagger-resources/**",
 		            "/configuration/ui",
@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		            "/swagger-ui.html",
 		            "/webjars/**"
 			).permitAll()
+			.antMatchers("/customer/v1/reset").hasAuthority("USR")
 			.anyRequest().authenticated().and() // todos os outros pedidos precisam ser autenticados
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -1,12 +1,10 @@
 package br.com.livelo.login.services;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import br.com.livelo.login.entities.UsersEntity;
@@ -26,7 +24,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (StringUtils.isNotBlank(login)) {
 			UsersEntity User = userServiceImpl.findByLogin(login);
 			if (User != null) {
-				return new User(User.getLogin(), User.getPassword(), new ArrayList<>());
+				return new User(User.getLogin(), User.getPassword(), User.getRoles());
 			}else {
 				throw new UserNotFoundException("Usuario não encontrado");
 			}

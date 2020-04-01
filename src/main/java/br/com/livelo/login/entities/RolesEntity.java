@@ -1,13 +1,18 @@
 package br.com.livelo.login.entities;
 
-import java.io.Serializable;
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Data;
 
 @Data
-public class RolesEntity implements Serializable {
+public class RolesEntity implements GrantedAuthority {
 
-	private static final long serialVersionUID = 6003640633353988900L;
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public String getAuthority() {
+		return this.nome;
+	}
 
 	private String nome;
 
