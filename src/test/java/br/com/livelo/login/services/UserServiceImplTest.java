@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.LoginRequestException;
 import br.com.livelo.login.repositories.UserRepository;
+import br.com.livelo.login.services.LoginService.LoginService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,7 +28,7 @@ public class UserServiceImplTest {
 	private UserRepository userRepository;
 
 	@Autowired
-	private UserService userService;
+	private LoginService userService;
 
 	@Test
 	public void findByLogin_sucess() {

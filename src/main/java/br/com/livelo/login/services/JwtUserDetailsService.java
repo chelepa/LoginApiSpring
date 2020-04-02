@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.LoginNullException;
 import br.com.livelo.login.exceptions.UserNotFoundException;
+import br.com.livelo.login.services.LoginService.LoginServiceImpl;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private LoginServiceImpl userServiceImpl;
 
 	@Override
 	public UserDetails loadUserByUsername(String login) {

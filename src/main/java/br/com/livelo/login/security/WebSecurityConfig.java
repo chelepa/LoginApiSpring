@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.UrlAuthorizationConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService jwtUserDetailsService;
+	
+	@Autowired
+	private URLConfiguration urlConfiguration;
 	
 
 	@Autowired
@@ -53,21 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-	
 		httpSecurity
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers(
-			    "/v1/login",
-			    "/customer/v1/create",
-		            "/swagger-resources",
-		            "/swagger-resources/**",
-		            "/configuration/ui",
-		            "/configuration/security",
-		            "/swagger-ui.html",
-		            "/webjars/**"
-			).permitAll()
-			.antMatchers("/customer/v1/reset").hasAuthority("USR")
+			.antMatchers(urlConfiguration.permitAll()).permitAll()		
+			.antMatchers(urlConfiguration.USR()).hasAuthority("USR")
 			.anyRequest().authenticated().and() // todos os outros pedidos precisam ser autenticados
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS);

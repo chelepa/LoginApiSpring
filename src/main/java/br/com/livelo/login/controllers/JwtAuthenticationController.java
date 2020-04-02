@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.livelo.login.dto.JwtResponseDTO;
 import br.com.livelo.login.dto.LoginAuthenticateDTO;
+import br.com.livelo.login.dto.UrlCheckDTO;
 import br.com.livelo.login.services.AuthenticateSecurity;
+import br.com.livelo.login.services.CheckUrl.CheckUrlService;
 
 @RestController
 @CrossOrigin
@@ -18,14 +20,17 @@ public class JwtAuthenticationController {
 
 	@Autowired
 	private AuthenticateSecurity authenticateSecurity;
+	
+	@Autowired 
+	private CheckUrlService checkurlservice;
 
 	@PostMapping(value = "/v1/login")
 	public ResponseEntity<JwtResponseDTO> createAuthenticationToken(@RequestBody LoginAuthenticateDTO authenticate) throws Exception {
-		return ResponseEntity.ok(new JwtResponseDTO(authenticateSecurity.authenticate(authenticate)));
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(new JwtResponseDTO(authenticateSecurity.authenticate(authenticate)));
 	}
 	
-	@PostMapping(value = "/customer/v1/reset")
-	private ResponseEntity<Boolean> checkRoute() throws Exception {
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(Boolean.TRUE);	
+	@PostMapping(value = "/v1/CheckUrl")
+	private ResponseEntity<Boolean> checkRoute(@RequestBody UrlCheckDTO URL) throws Exception {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(checkurlservice.checkUrl(URL));	
 	}
 }

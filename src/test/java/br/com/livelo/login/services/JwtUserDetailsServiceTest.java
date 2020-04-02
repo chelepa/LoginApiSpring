@@ -20,6 +20,7 @@ import br.com.livelo.login.entities.UsersEntity;
 import br.com.livelo.login.exceptions.InvalidCredentialsException;
 import br.com.livelo.login.exceptions.LoginNullException;
 import br.com.livelo.login.exceptions.UserNotFoundException;
+import br.com.livelo.login.services.LoginService.LoginServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,7 +31,7 @@ public class JwtUserDetailsServiceTest {
 	private static final String PASSWORD = "03300121000";
 
 	@MockBean
-	private UserServiceImpl userServiceImpl;
+	private LoginServiceImpl userServiceImpl;
 	
 	@Autowired
 	private JwtUserDetailsService jwtUserDetailsService;
