@@ -18,13 +18,20 @@ public class CheckUrlServiceImpl implements CheckUrlService {
 
 	@Autowired
 	private URLConfiguration urlconfiguration;
-	
+
 	public List<String> urls;
 	public List<String> authorities;
 
 	@Override
 	public Boolean checkUrl(UrlCheckDTO URL) {
+		for (int i = 0; i < permitAll().size(); i++) {
+			if (StringUtils.equalsIgnoreCase(permitAll().get(i), URL.getUrl())) {
+				return Boolean.TRUE;
+			}
+		}
+
 		for (int i = 0; i < Authorities().size(); i++) {
+
 			if (StringUtils.equalsIgnoreCase(Authorities().get(i), "USR")) {
 				for (int j = 0; j < USR().size(); j++) {
 					if (StringUtils.equalsIgnoreCase(USR().get(j), URL.getUrl())) {
